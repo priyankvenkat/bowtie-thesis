@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  llama:
+    container_name: llama_bowties
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8889:8889" 
+      - "8051:8051" # single llm + rag
+      - "8052:8052" # ocr method
+      - "8053:8053" # dual llm
+
+    volumes:
+      # Mount your local model folder so the container can access the 131GB model.
+      - /mnt/ssd850/DeepSeek-GGUF:/app/DeepSeek-R1-GGUF
+      - ./code:/app
+      - ./data:/app/data
+      - ./single_llm_with_api:/app/single_llm_with_api
+      - ./ocr_bowtie:/app/ocr_bowtie
+      - ./dual_llm_with_api:/app/dual_llm_with_api
+      - ./AlarmDefinitions:/app/AlarmDefinitions
+    environment:
+      NVIDIA_VISIBLE_DEVICES: "1"  # Use both GPUs if available.
+    runtime: nvidia
+    stdin_open: true      # Keeps STDIN open (equivalent to -i)
+    tty: true             # Allocates a TTY (equivalent to -t)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: all
