@@ -11,7 +11,7 @@ This single Dash script handles:
 
 ## Inputs
 
-- Images (JPG, PNG) or PDF files with tabular data
+- Images (JPG, PNG) that contain tabular data
 - Manually entered part name
 - Custom column header overrides per file
 
