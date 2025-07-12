@@ -4,6 +4,8 @@
 2. **faiss_index_creator.py**: Converts chunks to embeddings and builds a FAISS search index
 3. **rag_app_faiss.py**: Provides a Dash UI for retrieving chunks, configuring LLMs, and generating Bowtie diagrams with Mermaid visualisation
 
+**Demo**
+
 ---
 
 ## Files & What They Do
