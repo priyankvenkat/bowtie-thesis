@@ -2,7 +2,10 @@
 Vision+text dual-LLM workflows combining image-to-markdown extraction and Bowtie JSON generation.
 
 ### Demo
-![Demo of App](Dual_LLM_Pipeline.gif)
+<h3>Demo</h3>
+<p align="center">
+  <img src="Dual_LLM_Pipeline.gif" width="800"/>
+</p>
 
 **Contents:**
 
