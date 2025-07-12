@@ -13,6 +13,7 @@ The repository is organised into the following major folders and files, each cor
 - **Sobol Code**: Scripts to perform Sobol sensitivity analysis (Run 1 & 2) and stochasticity experiments, narrative experiments, varying prompts, context, and model parameters.  
 - **Dockerfile**: This file defines the project's Docker image, installs dependencies, and sets up the runtime environment.  
 - **docker-compose.yml**: Orchestrates multi-container setups (e.g., web app, Neo4j database) for development and deployment.  
-- **JSON_to_Bowtie.py**: Utility script to convert Bowtie JSON outputs into Mermaid diagrams or other export formats.  
+- **JSON_to_Bowtie.py**: Utility script to convert Bowtie JSON outputs into Mermaid diagrams.  
 - **model_selection.py**: Script for CLD generation and hallucination testing, extracting causal loops from narrative text.  
-- **README.md**: The primary project README containing setup, structure, and usage instructions.
+
+Within each folder, there is an additional README file specific to the folder's contents and what each file is responsible for. Where possible, a video of the output is added as a reference. 
