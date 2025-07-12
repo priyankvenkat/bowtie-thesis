@@ -2,7 +2,7 @@
 
 1. **chunking.py**: Extracts sections and tables from a PDF into structured JSON chunks
 2. **faiss_index_creator.py**: Converts chunks to embeddings and builds a FAISS search index
-3. **rag_app_faiss.py**: Provides a Dash UI for retrieving chunks, configuring LLMs, and generating Bowtie diagrams with Mermaid visualization
+3. **rag_app_faiss.py**: Provides a Dash UI for retrieving chunks, configuring LLMs, and generating Bowtie diagrams with Mermaid visualisation
 
 ---
 
@@ -43,13 +43,8 @@ Dash UI for:
 - Selecting LLM model, temperature, top-p, top-k
 - Choosing prompt type (zero, few, CoT)
 - Running the LLM over the retrieved context
-- Visualizing the result as a Mermaid diagram
+- Visualising the result as a Mermaid diagram
 
-**How to run:**
-```bash
-pip install -r requirements.txt
-python rag_app_faiss.py
-```
 
 **Inputs:**
 - FAISS indices (from previous step)
@@ -58,7 +53,7 @@ python rag_app_faiss.py
 
 **Outputs:**
 - Bowtie JSONs stored to disk per model
-- Mermaid visualization of each output
+- Mermaid visualisation of each output
 
 ---
 
