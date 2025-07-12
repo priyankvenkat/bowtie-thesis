@@ -108,12 +108,23 @@ def to_mermaid(bowtie, index=0):
     lines = [f"graph LR", f'    CE["{event_label}"]:::critical']
 
     # === Threats ===
+    # threats = bowtie.get("threats", [])
+    # if not threats:
+    #     threats = [{
+    #         "mechanism": bowtie.get("mechanism", None),
+    #         "cause": bowtie.get("causes", []) or bowtie.get("cause", [])
+    #     }]
+
+    # === Threats ===
     threats = bowtie.get("threats", [])
-    if not threats:
+    if isinstance(threats, dict):
+        threats = [threats]
+    elif not threats:
         threats = [{
             "mechanism": bowtie.get("mechanism", None),
             "cause": bowtie.get("causes", []) or bowtie.get("cause", [])
         }]
+
 
     for i, threat in enumerate(threats):
         mechanism_label = normalize_text_field(threat.get("mechanism"), "None")
