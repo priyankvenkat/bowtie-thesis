@@ -1,6 +1,11 @@
 
 Vision+text dual-LLM workflows combining image-to-markdown extraction and Bowtie JSON generation.
 
+**Demo**
+
+### Demo
+![Demo of App](Video/Dual LLM Pipeline.gif)
+
 **Contents:**
 
 - **app.py**  
@@ -16,13 +21,13 @@ Vision+text dual-LLM workflows combining image-to-markdown extraction and Bowtie
   - Rendering Mermaid diagrams and returning structured Bowtie output.
 
 - **config.py**  
-  Centralized configuration of:
+  Centralised configuration of:
   - Mistral API keys and endpoints
   - Available model paths
   - Supported prompt types and strictness levels.
 
 - **llm_runner.py**  
-  Calls local `llama-cpp` models with adjustable parameters including:
+  Calls local `llama-cpp` models with adjustable parameters, including:
   - Temperature
   - Top-p
   - Context size
