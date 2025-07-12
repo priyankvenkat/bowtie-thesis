@@ -1,5 +1,6 @@
 
-The app runs at: [http://localhost:8052](http://localhost:8052)
+### Demo
+https://github.com/user-attachments/assets/5d00109a-3673-4019-aa30-1fbb76e015d0
 
 This single Dash script handles:
 
