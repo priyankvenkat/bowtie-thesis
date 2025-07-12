@@ -4,7 +4,7 @@ Vision+text dual-LLM workflows combining image-to-markdown extraction and Bowtie
 **Demo**
 
 ### Demo
-![Demo of App](Video/Dual LLM Pipeline.gif)
+![Demo of App](Video/Dual LLM Pipeline/Dual LLM Pipeline.gif)
 
 **Contents:**
 
