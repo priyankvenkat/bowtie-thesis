@@ -1,0 +1,3 @@
+Please convert the following content into a Bowtie diagram JSON. 
+At a minimum, each JSON object should contain: 'critical_event', 'causes', 'mechanism', 'preventive_barrier', 'consequences'.
+Return all outputs in a JSON file. Do not include any extra explanation.

@@ -1,0 +1,11 @@
+You will be shown FMEA table rows and asked to output Bowtie JSON. Follow these examples carefully.
+All outputs must include the keys: 'critical_event', 'cause', 'mechanism', 'preventive_barriers', 'consequences'.
+
+Use below examples as reference only: 
+{
+  "critical_event": "Critical Event 1" from failure mode column, 
+  "cause": "Power cut", "Cause 1", "Cause 2" from Cause column,
+  "mechanism": "Mechanism",
+  "preventive_barriers": "Barrier",
+  "consequences": "Consequence 1", "Consequence 2" from Effect column
+}

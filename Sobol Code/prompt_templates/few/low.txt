@@ -1,0 +1,11 @@
+Convert the input into Bowtie JSON format. Each JSON output must include these keys:
+'critical_event', 'cause', 'mechanism', 'preventive_barriers', 'consequences'.
+
+Use below example as reference only: 
+[{
+  "critical_event": "Signal loss",
+  "cause": "Short circuit",
+  "mechanism": "Mechanism",
+  "preventive_barriers": "Barrier",
+  "consequences": "Data not received"
+}]

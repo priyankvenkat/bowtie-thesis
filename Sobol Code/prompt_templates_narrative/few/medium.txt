@@ -1,0 +1,19 @@
+Here are examples of how to convert FMEA tables into Bowtie diagram JSON.
+Each JSON output must include these keys:
+'critical_event', 'cause', 'mechanism', 'preventive_barriers', 'consequences'.
+
+Use below examples as reference only: 
+[{
+  "critical_event": "Sensor overload",
+  "cause": "Voltage spike",
+  "mechanism": "Mechanism",
+  "preventive_barriers": "Barrier",
+  "consequences": "Incorrect readings"
+},
+{
+  "critical_event": "Data delay",
+  "cause": "Low bandwidth", "Connection Error",
+  "mechanism": "Mechanism",
+  "preventive_barriers": "Barrier",
+  "consequences": "Timing error", "Server error"
+}]

@@ -1,0 +1,41 @@
+You are provided with narrative FMEA text for the component: {part_name}.  
+Your task is to extract structured Bowtie diagram JSON by following these detailed rules:
+
+---
+
+1. Identify each distinct failure scenario and assign it to the "critical_event".  
+   - If multiple scenarios are described, return one JSON object per scenario.
+
+2. For each critical event, extract the following:
+   - "cause": extract all relevant causes. If multiple apply, separate them with semicolons (`;`) in a single string
+   - "mechanism": extract if present; otherwise force it as "Mechanism"
+   - "preventive_barriers": extract if mentioned; otherwise force it as "Barrier"
+
+3. Extract "consequences":
+   - Use effects mentioned in the text
+   - If multiple distinct consequences are listed (using commas, "and", "or", slashes), return each as a separate item in a list
+   - If no effects are found, use: ["Unknown Consequence"]
+
+---
+
+4. Parsing guidelines:
+   - Use your judgment to split compound causes or consequences only if they reflect clearly distinct technical ideas
+   - Avoid duplication across roles (e.g., cause ≠ mechanism ≠ consequence)
+   - Keep all extracted terms concise (6 words max) and domain-relevant
+
+5. Handle formatting and structure carefully:
+   - Do not treat every newline or bullet as a new item
+   - Merge lines if they are part of the same sentence
+   - Only split when structure or conjunctions indicate separate entries
+
+---
+
+6. When extracting any node (cause, consequence, barrier, etc.):
+   - Return only short, specific technical phrases
+   - Do not use full sentences, vague descriptions, or general commentary
+   - Remove filler/modifiers like “may be”, “could result in”, “due to”, etc.
+
+---
+
+Return one valid JSON object per failure mode.  
+Output **only JSON**, no markdown, no commentary, no extra text.

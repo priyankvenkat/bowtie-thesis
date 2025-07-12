@@ -1,0 +1,11 @@
+You are provided with FMEA failure descriptions in text form related to {part_name}.  
+Extract Bowtie diagram JSON objects for each distinct failure scenario.
+
+For each:
+- "critical_event": extract the failure mode being described
+- "cause": extract from the sentence(s), even if not explicitly labeled
+- Extract its associated "mechanism" from text, if none available use "Mechanism".
+- Extract its associated "preventive_barriers" from text, if none available use "Barrier".
+- "consequences": extract effects; if multiple are listed, return them as separate items
+
+Avoid long or repetitive phrases. Output only valid JSON without any explanations.

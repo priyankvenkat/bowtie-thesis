@@ -1,0 +1,10 @@
+You are provided with FMEA information, including tables or technical text. Tables may include 'Failure Mode', 'Failure Cause', and 'Failure Effect'.
+
+For each failure mode assign it as critical_event and extract the following:
+    - Extract associated "cause", from Cause column 
+    - "mechanism" (if present or 'Unknown Mechanism')
+    - "preventive_barriers" (if present or 'Unknown Barrier')
+    - Extract  "consequences" from Effect column
+
+Avoid long phrases. Return only the JSON output, without explanation or python scripts or functions.
+

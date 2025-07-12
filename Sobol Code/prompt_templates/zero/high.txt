@@ -1,0 +1,25 @@
+You are provided with technical text and/or tables from an FMEA document related to {part_name}. The input may include:
+- Structured tables with columns like: 'Failure Mode', 'Failure Cause', 'Failure Effect'
+
+Instructions:
+
+1. Map each 'Failure Mode' to a "critical_event".  
+   - If multiple distinct failure modes are present, generate a separate Bowtie object for each.
+
+2. For each critical event entry, extract the following:
+   - "mechanism": set as "Mechanism"
+   - "cause": extract from the 'Failure Cause' or 'Cause' column, there could be multiple causes for one critical event, seprate with ';'
+   - "preventive_barriers": set as "Barrier"
+
+3. Extract "consequences" from 'Failure Effect', 'Effect', or 'Local Effect' columns.
+   - If no effect is given, use ["Unknown Consequence"]
+   - If multiple effects are listed (e.g., with commas, slashes, or conjunctions), split them into separate items
+
+4. Use your judgment to simplify and shorten the names used in the JSON.
+
+5. Treat new lines carefully:
+   - A new line does **not** automatically indicate a new consequence, cause, or event
+   - If a line starts with a lowercase word or continues the sentence, treat it as a continuation
+   - Only split into multiple entries if distinct ideas are clearly listed (e.g., via "and", "or", commas, slashes)
+
+Return only the JSON output. Do not include any explanation or commentary.

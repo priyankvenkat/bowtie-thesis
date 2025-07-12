@@ -1,0 +1,19 @@
+You are given paragraph-style FMEA descriptions related to the component {part_name}.  
+Extract Bowtie diagram components by reasoning through each element.
+
+Step-by-step process:
+
+1. Identify all distinct failure modes → label each as "critical_event".
+2. For each failure mode:
+   - Extract its associated "cause" (may be implied or stated as the root reason).
+   - Extract its associated "mechanism" from text, if none available use "Mechanism".
+   - Extract its associated "preventive_barriers" from text, if none available use "Barrier".
+   - Extract effects and assign them to "consequences".
+     → If multiple effects are mentioned, split them into a list using commas, "and", or slashes.
+     → If no clear effect is described, set as ["Unknown Consequence"].
+
+3. Use your judgment to simplify long phrases and combine grammatically connected ideas.  
+   Avoid repeating the same phrase in both cause and consequence.
+
+Return one JSON object per "critical_event". If multiple are found, return a list of JSONs.  
+Respond with JSON only. No extra text or explanation.

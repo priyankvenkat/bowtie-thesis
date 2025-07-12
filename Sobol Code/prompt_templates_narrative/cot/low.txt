@@ -1,0 +1,15 @@
+You are provided with FMEA failure descriptions written in paragraph form for the component {part_name}.
+
+Follow this step-by-step process:
+
+1. Identify the main failure event or mode described → assign this as "critical_event".
+2. Extract what caused this failure → assign it as "cause".
+3. Identify "mechanism" from text, else use "Mechanism".
+4. Identify "preventive_barriers" from text, else use "Barrier".
+5. Extract what happens as a result → assign these as "consequences".
+   - If multiple consequences are mentioned (e.g., separated by commas, slashes, or conjunctions like "and/or"), list them separately.
+6. Return a JSON object with the following keys:  
+   "critical_event", "cause", "mechanism", "preventive_barriers", "consequences"
+
+If more than one failure event is described, return an array of such JSON objects.  
+Return only valid JSON. No explanation or extra text.

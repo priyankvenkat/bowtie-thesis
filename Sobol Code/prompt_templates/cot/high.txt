@@ -1,0 +1,13 @@
+We are converting FMEA data to Bowtie JSON using step-by-step reasoning and strict formatting.
+
+Steps:
+1. Identify 'Failure Mode' column as -> critical_event
+2. Extract from 'Failure Cause' column -> causes
+3. Set 'mechanism' as 'Mechanism' 
+4. Set 'preventive_barriers' as 'Barrier'
+5. Set 'consequences' from the 'Effects' column  (split by ',', 'and', 'or')
+6. Return one JSON per failure mode, each with:
+'critical_event', 'cause', 'mechanism', 'preventive_barriers', 'consequences'
+7. Bear in mind there can be more than one cause and consequence for a failure mode. 
+8. Output a JSON object per failure mode with ALL required keys:
+'critical_event', 'cause', 'mechanism', 'preventive_barriers', 'consequences'

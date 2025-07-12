@@ -1,0 +1,9 @@
+This is an FMEA table. You need to extract the failure modes as critical events, then get causes and consequences.
+The output will be in JSON and MUST include:
+
+Follow this step-by-step:
+1. Extract 'critical_event'
+2. Extract relevant 'causes'
+3. Extract 'mechanism'
+4. Extract 'preventive_barriers'
+5. Extract relevant 'consequences'

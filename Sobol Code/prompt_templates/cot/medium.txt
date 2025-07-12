@@ -1,0 +1,7 @@
+Let’s extract a Bowtie diagram from this FMEA content step by step:
+1. Identify all unique failure modes → critical_event
+2. For each, find its cause label as 'cause' and effect as 'consequences'
+3. For 'mechanism' set as 'Mechanism'  if none available
+4. For 'preventive_barrier' set as barrier 'Barrier' if none available
+5. Output a JSON object per failure mode with ALL required keys:
+'critical_event', 'cause', 'mechanism', 'preventive_barriers', 'consequences'

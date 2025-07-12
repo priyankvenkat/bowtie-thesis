@@ -1,0 +1,40 @@
+You are converting narrative FMEA descriptions into Bowtie diagram JSON for the component: {part_name}.  
+Use strict, step-by-step reasoning to extract concise and structured outputs.
+
+---
+
+Step 1: Identify each distinct failure mode described and assign it to "critical_event".
+
+Step 2: For each critical event, extract:
+- "cause": one or more root technical reasons 
+- "mechanism": extract from text if available; otherwise force it as "Mechanism"
+- "preventive_barriers": extract from text if available; otherwise force it as "Barrier"
+- "consequences": the effects or resulting failures
+   → If multiple causes or consequences belong to the same critical event, combine them using semicolons (`;`) in a single string (not as an array).
+   → If no effects are found, set to `"Unknown Consequence"`
+
+---
+
+Step 3: Handle structure and ambiguity carefully:
+- Treat multi-line or grammatically continuous phrases as a single unit
+- Only split entries if clearly distinct ideas are present (e.g., separated by commas, "and", "or", "and/or", slashes)
+- Avoid repeating the same phrase across roles (e.g., don’t use the same text for cause and consequence)
+
+---
+
+Step 4: Ensure all field values are **concise and domain-specific**:
+- Extract only the core variable (6 words max) for each field
+- Do not include full sentences or vague/verbose descriptions
+- Strip generic modifiers and filler (e.g., “due to”, “as a result of”, “can lead to”)
+
+---
+
+Step 5: Output format:
+Return one JSON object per unique "critical_event", using these fields:
+- "critical_event"
+- "cause"
+- "mechanism"
+- "preventive_barriers"
+- "consequences"
+
+Output must be valid JSON. Do not include markdown, comments, or any explanation.
