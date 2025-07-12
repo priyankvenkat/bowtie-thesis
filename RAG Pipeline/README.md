@@ -5,6 +5,7 @@
 3. **rag_app_faiss.py**: Provides a Dash UI for retrieving chunks, configuring LLMs, and generating Bowtie diagrams with Mermaid visualisation
 
 **Demo**
+https://github.com/user-attachments/assets/0c5ba7d3-e01e-4056-94b5-2a125f147599
 
 ---
 
