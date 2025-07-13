@@ -39,7 +39,7 @@ https://github.com/user-attachments/assets/0c5ba7d3-e01e-4056-94b5-2a125f147599
 - `rag_app_faiss.py` lets users:
   - Select index source (tables, text, combined)
   - Enter part name (e.g., “sensor”)
-  - Choose prompt type (zero/few/CoT), temperature, top-p, etc.
+  - Choose prompt type (zero/few/CoT), temperature, top-p, etc (changes to this are made in the rag_app_faiss.py file)
   - Run a local LLM (via `llama-cpp`)
   - Preview the JSON and render a Mermaid diagram
 
