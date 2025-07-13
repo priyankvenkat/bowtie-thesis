@@ -126,7 +126,7 @@ Return only the JSON output. Do not include any explanation or commentary.
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container([
-    html.H2("Bowtie Generator (OCR + Mermaid Conversion)"),
+    html.H2("Bowtie Generator - OCR Pipeline"),
 
     dcc.Tabs(id="tabs", value='tab-ocr', children=[
         dcc.Tab(label='OCR to Bowtie JSON', value='tab-ocr', children=[
