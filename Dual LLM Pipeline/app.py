@@ -20,7 +20,7 @@ tabs = dbc.Tabs([
 
 # === Layout for JSON Tab ===
 layout_json = dbc.Container([
-    html.H2("📊 Table to Bowtie JSON Generator"),
+    html.H2("📊 Bowtie Generator - Dual LLM Pipeline"),
     dcc.Upload(
         id='upload-image',
         children=html.Div(['Drag and Drop or ', html.A('Select Image')]),
