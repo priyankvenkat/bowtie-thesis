@@ -50,7 +50,7 @@ graph TD
   A[Start: Input FMEA] --> B{Choose Method}
   B --> C1[RAG Pipeline]
   B --> C2[OCR Pipeline]
-  B --> C3[Dual LLM (Pixtral + Reasoning LLM)]
+  B --> C3[Dual LLM: Mistral-Small + Reasoning LLM]
   B --> C4[Neo4j Triple Graph]
 
   C1 --> D1[Chunk PDF → JSON]
