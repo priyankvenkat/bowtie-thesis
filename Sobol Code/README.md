@@ -1,28 +1,21 @@
+# Sobol Sensitivity, Stochasticity Experiments and Narrative Input Experiments
 
-## Files & Roles
+This directory contains scripts and notebooks to evaluate how prompt parameters, context type, and random seeds affect Bowtie diagram generation. Two primary analyses are supported:
 
-### `sobol Run1.ipynb`
-Notebook that runs analysis and visualizes first-order and total-order Sobol sensitivity indices for Run 1 (baseline).
+- **Sobol sensitivity analysis** (Run 1 & Run 2)
+- **Stochasticity experiments** (seed variability & narrative input) 
 
-### `Sobol Run2 1024.ipynb`
-Notebook that processes and visualizes Sobol indices from Run 2 (with 1024 samples). Used to analyze how different parameters (prompt type, strictness, context) affect output variability.
+---
 
-### `detached sobol run.py`
-Main script for running the full Sobol experiment (used for both Run 1 and 2). Supports:
-- Configurable prompt type
-- Context injection
-- Dynamic seed selection
-- Model cycling
+## 📁 Files & Roles
 
-Produces Bowtie JSONs for each model/sample combo.
-
-### `stochastic experiment.py`
-Standalone script to evaluate how model outputs vary with different seeds and fixed prompts.
-- Change `PART_NAME`, number of seeds, or `RAG_CONTEXT` to switch experiments.
-- Runs top-2 prompt settings per model repeatedly.
-
-### `Stochastic Experiment.ipynb`
-Analysis notebook for evaluating JSON output variability across seeds, with metrics and plots (e.g., number of unique outputs, failure rates, node mismatch).
+| File                          | Description |
+|-------------------------------|-------------|
+| `sobol Run1.ipynb`            | Notebook that computes and plots first-order and total-order Sobol indices for Run 1. |
+| `Sobol Run2 1024.ipynb`       | Extended notebook for analysing Sobol indices using 1024 samples. Focuses on prompt type, strictness, and context effects. |
+| `detached sobol run.py`       | Full pipeline for running the Sobol experiment. Dynamically cycles models, seeds, and prompt configurations. Produces Bowtie JSON outputs. |
+| `stochastic experiment.py`    | Script for evaluating output variability across seeds. Runs each model on top-2 prompt settings repeatedly. Customizable part/context/seed count. |
+| `Stochastic Experiment.ipynb` | Notebook that analyses variability in Bowtie JSONs generated from multiple seeds. Includes plots, stats, and error tracking. |
 
 ---
 
@@ -47,3 +40,4 @@ prompt_templates/
 ### `prompt_templates_narrative/`
 Same structure, but designed for free-text or paragraph-style input.
 
+---
