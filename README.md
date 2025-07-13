@@ -1,32 +1,12 @@
-# Bowtie Thesis
-
-## Project Folder Information
-
-The repository is organised into the following major folders and files, each corresponding to a component of the overall workflow:
-
-- **Automatic_JSON_Metrics**: Scripts and data for automatically computing node, edge, and GED metrics from predicted and ground-truth JSON Bowtie diagrams.  
-- **Dual LLM Pipeline**: Vision+text dual-LLM workflows (e.g., Pixtral image-to-markdown plus LLM Bowtie JSON generation).  
-- **Neo4js Pipeline**: Prototype code for extracting SPO triples from text via vision LLM, storing in Neo4j, and generating Bowtie JSON by querying the graph.  
-- **OCR Pipeline**: Integration of OCR (e.g., PaddleOCR or pdfplumber) to extract text and tables from scanned PDFs/images for downstream LLM prompts.  
-- **RAG Pipeline**: Components for chunking, FAISS indexing, and the Dash app that retrieves context and runs LLMs to generate Bowtie JSON.  
-- **Sobol Code**: Scripts to perform Sobol sensitivity analysis (Run 1 & 2) and stochasticity experiments, narrative experiments, varying prompts, context, and model parameters.  
-- **Dockerfile**: This file defines the project's Docker image, installs dependencies, and sets up the runtime environment.  
-- **docker-compose.yml**: Orchestrates multi-container setups (e.g., web app, Neo4j database) for development and deployment.  
-- **JSON_to_Bowtie.py**: Utility script to convert Bowtie JSON outputs into Mermaid diagrams.  
-- **model_selection.py**: Script for CLD generation and hallucination testing, extracting causal loops from narrative text.  
-
-Within each folder, there is an additional README file specific to the folder's contents and what each file is responsible for. Where possible, a video of the output is added as a reference. 
-
-
 # 🎓 Bowtie Thesis: LLM-Based Causal Diagram Generation
 
-This project explores the use of Large Language Models (LLMs) for automating the extraction of Bowtie diagrams and Causal Loop Diagrams (CLDs) from FMEA-style technical documents. It combines OCR, RAG, Vision LLMs, and Knowledge Graphs in a modular Dash interface.
+This project explores the use of large language models (LLMs) to automate the extraction of Bowtie diagrams and Causal Loop Diagrams (CLDs) from FMEA-style technical documents. It combines OCR, RAG, Vision LLMs, and Knowledge Graphs in a modular Dash interface.
 
 ---
 
 ## 🗂️ Folder Overview
 
-Each folder includes its own `README.md` explaining scripts, inputs/outputs, and optional UI demos.
+Each folder includes its own `README.md` explaining scripts, inputs/outputs, and UI demos.
 
 ### 🚀 Pipelines
 
@@ -67,10 +47,30 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 
 ```mermaid
 graph TD
-  A[Upload Document] --> B{OCR and Chunking}
-  B --> C[Extract Context: Tables or Text]
-  C --> D[Select Model + Prompt]
-  D --> E[LLM Output → Bowtie JSON]
-  E --> F[Evaluate vs Ground Truth]
-  E --> G[Render Mermaid Diagram]
-  G --> H[Visual Review & Override]
+  A[Start: Input FMEA] --> B{Choose Method}
+  B --> C1[RAG Pipeline]
+  B --> C2[OCR Pipeline]
+  B --> C3[Dual LLM (Pixtral + Reasoning LLM)]
+  B --> C4[Neo4j Triple Graph]
+
+  C1 --> D1[Chunk PDF → JSON]
+  D1 --> E1[FAISS Index + Search]
+  E1 --> F1[Context + Prompt → LLM]
+  F1 --> G[Generate Bowtie JSON]
+
+  C2 --> D2[Extract Text/Tables (OCR)]
+  D2 --> F2[Send to LLM]
+  F2 --> G
+
+  C3 --> D3[Pixtral Extracts Table JSON]
+  D3 --> F3[Reasoning LLM → Bowtie JSON]
+  F3 --> G
+
+  C4 --> D4[Vision LLM Extracts SPO Triples]
+  D4 --> E4[Store in Neo4j]
+  E4 --> F4[Query Graph → Bowtie JSON]
+  F4 --> G
+
+  G --> H[Evaluate vs Ground Truth]
+  G --> I[Render Mermaid Diagram]
+
