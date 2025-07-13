@@ -67,8 +67,8 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 
 ```mermaid
 graph TD
-  A[Upload Document] --> B{OCR / Chunking}
-  B --> C[Extract Context (Tables or Text)]
+  A[Upload Document] --> B{OCR and Chunking}
+  B --> C[Extract Context: Tables or Text]
   C --> D[Select Model + Prompt]
   D --> E[LLM Output → Bowtie JSON]
   E --> F[Evaluate vs Ground Truth]
