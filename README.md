@@ -51,7 +51,7 @@ config:
   theme: default
   themeVariables:
     fontSize: 14px
-  look: handDrawn
+  look: neo
 ---
 graph TD
 A([📄 Start: Input FMEA Document]) --> B{🔀 Choose Pipeline Method}
