@@ -5,7 +5,7 @@ A Dash-based interface for visualising, validating, and scoring automatically ge
 ---
 
 ### Demo
-
+https://github.com/user-attachments/assets/e4526a28-2836-4455-95d1-b4aa39bace46
 
 ---
 
