@@ -1,64 +1,46 @@
-## Overview
+# RAG Pipeline
 
-1. **chunking.py**: Extracts sections and tables from a PDF into structured JSON chunks
-2. **faiss_index_creator.py**: Converts chunks to embeddings and builds a FAISS search index
-3. **rag_app_faiss.py**: Provides a Dash UI for retrieving chunks, configuring LLMs, and generating Bowtie diagrams with Mermaid visualisation
+This pipeline enables semantic retrieval from chunked FMEA documents using FAISS and passes retrieved context into local LLMs to generate Bowtie diagrams via a Dash interface.
+
+---
 
 ### Demo
 https://github.com/user-attachments/assets/0c5ba7d3-e01e-4056-94b5-2a125f147599
 
 ---
 
-## Files & What They Do
+## 📁 File Overview
 
-### `chunking.py`
-Extracts content from a technical FMEA PDF and saves three types of chunked outputs:
-
-- `sections.json`: textual sections extracted using PyMuPDF
-- `tables.json`: structured tables extracted using pdfplumber + captions
-- `combined_chunks.json`: unified, sorted merge of both tables and text
-
-**Output folder:**
-- Three JSON files (sections, tables, combined) for downstream FAISS creation
+| File                   | Description |
+|------------------------|-------------|
+| `chunking.py`          | Extracts structured content from FMEA PDFs into three JSONs: sections (text), tables, and combined. |
+| `faiss_index_creator.py` | Converts chunked JSONs into sentence embeddings and builds searchable FAISS indices. |
+| `rag_app_faiss.py`     | Dash app for retrieving chunks, configuring LLMs (model + prompt), running inference, and rendering Mermaid diagrams. |
 
 ---
 
-### `faiss_index_creator.py`
-Takes the output of `chunking.py` and encodes all chunks into sentence embeddings (via `sentence-transformers`). Then, it builds FAISS indices for each source.
+## 🧠 Pipeline Overview
 
-**Output folder:**
-- `faiss_chunks/`
-  - `faiss_sections.idx`
-  - `faiss_tables.idx`
-  - `faiss_combined.idx`
-  - Corresponding `*_metadata.json` files
+### 1. PDF → Chunks
+- `chunking.py` separates the PDF into:
+  - `sections.json`: text blocks with headings
+  - `tables.json`: tables with column structure
+  - `combined_chunks.json`: merged and sorted by page + position
 
-These can be queried at runtime to retrieve the top-k semantically similar chunks.
+### 2. Chunks → FAISS
+- `faiss_index_creator.py` encodes chunk content using `sentence-transformers` and builds `.idx` files
+- Outputs:
+  - `faiss_chunks/faiss_sections.idx`
+  - `faiss_chunks/faiss_tables.idx`
+  - `faiss_chunks/faiss_combined.idx`
+  - Plus metadata JSONs for traceability
 
----
-
-### `rag_app_faiss.py`
-Dash UI for:
-
-- Selecting a FAISS source (tables, text, or combined)
-- Entering a part/component name
-- Retrieving and previewing top-k context chunks
-- Selecting LLM model, temperature, top-p, top-k
-- Choosing prompt type (zero, few, CoT)
-- Running the LLM over the retrieved context
-- Visualising the result as a Mermaid diagram
-
-
-**Inputs:**
-- FAISS indices (from previous step)
-- Prompt templates
-- Local GGUF models
-
-**Outputs:**
-- Bowtie JSONs stored to disk per model
-- Mermaid visualisation of each output
+### 3. UI: RAG App
+- `rag_app_faiss.py` lets users:
+  - Select index source (tables, text, combined)
+  - Enter part name (e.g., “sensor”)
+  - Choose prompt type (zero/few/CoT), temperature, top-p, etc.
+  - Run a local LLM (via `llama-cpp`)
+  - Preview the JSON and render a Mermaid diagram
 
 ---
-
-## Folder: `faiss_chunks`
-Stores all `.idx` files and corresponding metadata JSONs for chunk search. This folder is auto-populated when `faiss_index_creator.py` is run.
