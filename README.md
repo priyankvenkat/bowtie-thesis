@@ -46,31 +46,40 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 ## 📈 Pipeline Flow (Mermaid)
 
 ```mermaid
+%%{init: {'theme':'default', 'themeVariables': { 'primaryColor': '#f0f0f0', 'edgeLabelBackground':'#ffffff', 'fontSize': '14px' }}}%%
 graph TD
-  A[Start: Input FMEA] --> B{Choose Method}
-  B --> C1[RAG Pipeline]
-  B --> C2[OCR Pipeline]
-  B --> C3[Dual LLM: Mistral-Small + Reasoning LLM]
-  B --> C4[Neo4j Triple Graph]
 
-  C1 --> D1[Chunk PDF → JSON]
-  D1 --> E1[FAISS Index + Search]
-  E1 --> F1[Context + Prompt → LLM]
-  F1 --> G[Generate Bowtie JSON]
+  A([📄 Start: Input FMEA Document]) --> B{🔀 Choose Pipeline Method}
 
-  C2 --> D2[Extract Text/Tables: OCR]
-  D2 --> F2[Send to LLM]
+  B --> C1{{🔵 RAG Pipeline}}
+  B --> C2{{🟢 OCR Pipeline}}
+  B --> C3{{🟣 Dual LLM Pipeline}}
+  B --> C4{{🟠 Neo4j Graph Pipeline}}
+
+  %% RAG
+  C1 --> D1[📚 Chunk PDF → JSON]
+  D1 --> E1[🔍 Build FAISS Index + Search]
+  E1 --> F1[🧠 Context + Prompt → LLM]
+  F1 --> G[✅ Generate Bowtie JSON]
+
+  %% OCR
+  C2 --> D2[📸 Extract Text/Tables (OCR)]
+  D2 --> F2[🧠 Send to LLM]
   F2 --> G
 
-  C3 --> D3[Pixtral Extracts Table JSON]
-  D3 --> F3[Reasoning LLM → Bowtie JSON]
+  %% Dual LLM
+  C3 --> D3[👁️ Pixtral Extracts Table + Summary]
+  D3 --> F3[🧠 Reasoning LLM → Bowtie JSON]
   F3 --> G
 
-  C4 --> D4[Vision LLM Extracts SPO Triples]
-  D4 --> E4[Store in Neo4j]
-  E4 --> F4[Query Graph → Bowtie JSON]
+  %% Neo4j
+  C4 --> D4[🧠 Vision LLM → SPO Triples]
+  D4 --> E4[🗂️ Store in Neo4j]
+  E4 --> F4[🔄 Query Graph → Bowtie JSON]
   F4 --> G
 
-  G --> H[Evaluate vs Ground Truth]
-  G --> I[Render Mermaid Diagram]
+  %% Final steps
+  G --> H[📏 Evaluate vs Ground Truth]
+  G --> I[📊 Render Mermaid Diagram]
+
 
