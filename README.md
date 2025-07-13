@@ -46,15 +46,12 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 ## 📈 Pipeline Flow
 
 ```mermaid
----
-config:
-  theme: default
-  themeVariables:
-    fontSize: 14px
-  look: neo
----
+%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
-A([📄 Start: Input FMEA Document]) --> B{🔀 Choose Pipeline Method}
+
+A([📄 Start: Input FMEA Document or Image]) --> B{🔀 Choose Pipeline Method}
+
+%% RAG Pipeline
 subgraph RAG [🔵 RAG Pipeline]
   direction TB
   C1[📚 Chunk PDF → JSON]
@@ -62,35 +59,42 @@ subgraph RAG [🔵 RAG Pipeline]
   E1[🧠 Context + Prompt → LLM]
   C1 --> D1 --> E1 --> G1[✅ Generate Bowtie JSON]
 end
+
+%% OCR Pipeline
 subgraph OCR [🟢 OCR Pipeline]
   direction TB
-  C2[📸 Extract Text/Table]
+  C2[📸 Extract Text/Tables]
   D2[🧠 Send to LLM]
   C2 --> D2 --> G2[✅ Generate Bowtie JSON]
 end
+
+%% Dual LLM Pipeline
 subgraph DualLLM [🟣 Dual LLM Pipeline]
   direction TB
-  C3[👁️ Pixtral Extracts Table + Summary]
+  C3[👁️ Mistral-small Extracts Table + Summary]
   D3[🧠 Reasoning LLM → Bowtie JSON]
   C3 --> D3 --> G3[✅ Generate Bowtie JSON]
 end
-subgraph Neo4j [🟠 Neo4j Graph Pipeline]
+
+%% Neo4j Graph Pipeline
+subgraph Neo4j [🟠 Neo4j Knowledge Graph Pipeline]
   direction TB
-  C4[🧠 Vision LLM → Causal Pathways]
+  C4[🧠 Vision LLM → Extracts Bowtie Components]
   D4[🗂️ Store in Neo4j]
   E4[🔄 Query Graph → Bowtie JSON]
   C4 --> D4 --> E4 --> G4[✅ Generate Bowtie JSON]
 end
+
 B --> RAG
 B --> OCR
 B --> DualLLM
 B --> Neo4j
+
+%% Common Post-processing
 G1 --> H[📏 Evaluate vs Ground Truth]
 G2 --> H
 G3 --> H
 G4 --> H
 H --> I[📊 Render Mermaid Diagram]
-
-
 
 
