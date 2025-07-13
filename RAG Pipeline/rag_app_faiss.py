@@ -90,7 +90,7 @@ def is_part_mentioned(chunk, part):
 # === Layout ===
 
 app.layout = dbc.Container([
-    html.H2("Bowtie Generator with RAG Pipeline"),
+    html.H2("Bowtie Generator - RAG Pipeline"),
 
     dcc.Tabs(id="tabs", value='tab-generate', children=[
         dcc.Tab(label='Generate Bowtie JSON', value='tab-generate', children=[
