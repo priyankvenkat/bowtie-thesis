@@ -46,63 +46,41 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 ## 📈 Pipeline Flow
 
 ```mermaid
-%%{init: {"theme": "default", "themeVariables": { "fontSize": "14px", "fontFamily": "Inter, sans-serif", "primaryTextColor": "#000" }}}%%
-
+%%{init: {'theme':'default', 'themeVariables': { 'primaryColor': '#f0f0f0', 'edgeLabelBackground':'#ffffff', 'fontSize': '14px' }}}%%
 graph TD
-  %% Method Choice
-  A[Start: Input FMEA] --> B{Choose Method}
 
-  %% RAG Pipeline - Light Yellow
-  subgraph RAG Pipeline
-    direction TB
-    C1[RAG Pipeline]:::rag
-    D1[Chunk PDF → JSON]:::rag
-    E1[FAISS Index + Search]:::rag
-    F1[Context + Prompt → LLM]:::rag
-  end
-  B --> C1
-  C1 --> D1 --> E1 --> F1 --> G
+  A([📄 Start: Input FMEA Document]) --> B{🔀 Choose Pipeline Method}
 
-  %% OCR Pipeline - Light Blue
-  subgraph OCR Pipeline
-    direction TB
-    C2[OCR Pipeline]:::ocr
-    D2[Extract Text/Tables: OCR]:::ocr
-    F2[Send to LLM]:::ocr
-  end
-  B --> C2
-  C2 --> D2 --> F2 --> G
+  B --> C1{{🔵 RAG Pipeline}}
+  B --> C2{{🟢 OCR Pipeline}}
+  B --> C3{{🟣 Dual LLM Pipeline}}
+  B --> C4{{🟠 Neo4j Graph Pipeline}}
 
-  %% Dual LLM Pipeline - Light Green
-  subgraph Dual LLM Pipeline
-    direction TB
-    C3[Dual LLM Pipeline]:::dual
-    D3[Pixtral Extracts Table JSON]:::dual
-    F3[Reasoning LLM → Bowtie JSON]:::dual
-  end
-  B --> C3
-  C3 --> D3 --> F3 --> G
+  %% RAG
+  C1 --> D1[📚 Chunk PDF → JSON]
+  D1 --> E1[🔍 Build FAISS Index + Search]
+  E1 --> F1[🧠 Context + Prompt → LLM]
+  F1 --> G[✅ Generate Bowtie JSON]
 
-  %% Neo4j Pipeline - Light Purple
-  subgraph Neo4j Knowledge Graph Pipeline
-    direction TB
-    C4[Neo4j Knowledge Graph Pipeline]:::neo
-    D4[Vision LLM Extracts SPO Triples]:::neo
-    E4[Store in Neo4j]:::neo
-    F4[Query Graph → Bowtie JSON]:::neo
-  end
-  B --> C4
-  C4 --> D4 --> E4 --> F4 --> G
+  %% OCR
+  C2 --> D2[📸 Extract Text/Tables: OCR]
+  D2 --> F2[🧠 Send to LLM]
+  F2 --> G
 
-  %% Shared Post-processing
-  G[Generate Bowtie JSON]
-  G --> H[Evaluate vs Ground Truth]
-  G --> I[Render Mermaid Diagram]
+  %% Dual LLM
+  C3 --> D3[👁️ Pixtral Extracts Table + Summary]
+  D3 --> F3[🧠 Reasoning LLM → Bowtie JSON]
+  F3 --> G
 
-  %% Styling
-  classDef rag fill:#FFFACD,color:#000;
-  classDef ocr fill:#D8EEFF,color:#000;
-  classDef dual fill:#DFFFD7,color:#000;
-  classDef neo fill:#EAD7FF,color:#000;
+  %% Neo4j
+  C4 --> D4[🧠 Vision LLM → SPO Triples]
+  D4 --> E4[🗂️ Store in Neo4j]
+  E4 --> F4[🔄 Query Graph → Bowtie JSON]
+  F4 --> G
+
+  %% Final steps
+  G --> H[📏 Evaluate vs Ground Truth]
+  G --> I[📊 Render Mermaid Diagram]
+
 
 
