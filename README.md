@@ -63,7 +63,7 @@ graph TD
   F1 --> G[✅ Generate Bowtie JSON]
 
   %% OCR
-  C2 --> D2[📸 Extract Text/Tables (OCR)]
+  C2 --> D2[📸 Extract Text/Tables: OCR]
   D2 --> F2[🧠 Send to LLM]
   F2 --> G
 
