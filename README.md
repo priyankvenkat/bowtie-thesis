@@ -46,40 +46,55 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 ## 📈 Pipeline Flow (Mermaid)
 
 ```mermaid
-%%{init: {'theme':'default', 'themeVariables': { 'primaryColor': '#f0f0f0', 'edgeLabelBackground':'#ffffff', 'fontSize': '14px' }}}%%
+%%{init: {'theme': 'default'}}%%
 graph TD
 
-  A([📄 Start: Input FMEA Document]) --> B{🔀 Choose Pipeline Method}
+  %% Color styling
+  classDef rag fill=#E0F7FA,stroke=#00ACC1,stroke-width=2
+  classDef ocr fill=#FFF3E0,stroke=#FB8C00,stroke-width=2
+  classDef dual fill=#F3E5F5,stroke=#8E24AA,stroke-width=2
+  classDef kg fill=#E8F5E9,stroke=#43A047,stroke-width=2
+  classDef output fill=#ECEFF1,stroke=#607D8B,stroke-width=2
 
-  B --> C1{{🔵 RAG Pipeline}}
-  B --> C2{{🟢 OCR Pipeline}}
-  B --> C3{{🟣 Dual LLM Pipeline}}
-  B --> C4{{🟠 Neo4j Graph Pipeline}}
+  A[Start: Input FMEA]
+
+  A --> B{Choose Method}
+  B --> C1[RAG Pipeline]
+  B --> C2[OCR Pipeline]
+  B --> C3[Dual LLM Pipeline]
+  B --> C4[Neo4j Knowledge Graph Pipeline]
 
   %% RAG
-  C1 --> D1[📚 Chunk PDF → JSON]
-  D1 --> E1[🔍 Build FAISS Index + Search]
-  E1 --> F1[🧠 Context + Prompt → LLM]
-  F1 --> G[✅ Generate Bowtie JSON]
+  C1 --> D1[Chunk PDF → JSON]
+  D1 --> E1[FAISS Index + Search]
+  E1 --> F1[Context + Prompt → LLM]
+  F1 --> G[Generate Bowtie JSON]
 
   %% OCR
-  C2 --> D2[📸 Extract Text/Tables: OCR]
-  D2 --> F2[🧠 Send to LLM]
+  C2 --> D2[Extract Text/Tables via OCR]
+  D2 --> F2[Send to LLM]
   F2 --> G
 
   %% Dual LLM
-  C3 --> D3[👁️ Pixtral Extracts Table + Summary]
-  D3 --> F3[🧠 Reasoning LLM → Bowtie JSON]
+  C3 --> D3[Pixtral → Table Markdown + Summary]
+  D3 --> F3[Reasoning LLM → Bowtie JSON]
   F3 --> G
 
-  %% Neo4j
-  C4 --> D4[🧠 Vision LLM → SPO Triples]
-  D4 --> E4[🗂️ Store in Neo4j]
-  E4 --> F4[🔄 Query Graph → Bowtie JSON]
+  %% Knowledge Graph
+  C4 --> D4[Vision LLM → SPO Triples]
+  D4 --> E4[Store in Neo4j]
+  E4 --> F4[Query Graph → Bowtie JSON]
   F4 --> G
 
-  %% Final steps
-  G --> H[📏 Evaluate vs Ground Truth]
-  G --> I[📊 Render Mermaid Diagram]
+  %% Output
+  G --> H[Evaluate vs Ground Truth]
+  G --> I[Render Mermaid Diagram]
+
+  %% Apply styles
+  class C1,D1,E1,F1 rag
+  class C2,D2,F2 ocr
+  class C3,D3,F3 dual
+  class C4,D4,E4,F4 kg
+  class G,H,I output
 
 
