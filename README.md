@@ -17,7 +17,7 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
   Vision-to-markdown extraction using Pixtral → Bowtie JSON generation using a second LLM (e.g., LLaMA).
 
 - [`Neo4js Pipeline/`](./Neo4js%20Pipeline)  
-  Extract SPO triples via Vision LLM → insert into Neo4j → query graph to reconstruct Bowtie JSONs.
+  Extract causal chains via Vision LLM → insert into Neo4j → query graph to reconstruct Bowtie JSONs.
 
 - [`OCR Pipeline/`](./OCR%20Pipeline)  
   Uses img2table/Tesseract or PaddleOCR to extract tables/text from scanned PDFs and images for prompt input.
