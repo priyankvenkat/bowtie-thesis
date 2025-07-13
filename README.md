@@ -43,7 +43,7 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 
 ---
 
-## 📈 Pipeline Flow (Mermaid)
+## 📈 Pipeline Flow
 
 ```mermaid
 %%{init: {"theme": "default", "themeVariables": { "fontSize": "14px", "fontFamily": "Inter, sans-serif", "primaryTextColor": "#000" }}}%%
