@@ -58,7 +58,7 @@ graph TD
   E1 --> F1[Context + Prompt → LLM]
   F1 --> G[Generate Bowtie JSON]
 
-  C2 --> D2[Extract Text/Tables (OCR)]
+  C2 --> D2[Extract Text/Tables: OCR]
   D2 --> F2[Send to LLM]
   F2 --> G
 
