@@ -8,7 +8,7 @@ This project explores the use of large language models (LLMs) to automate the ex
 
 Each folder includes its own `README.md` explaining scripts, inputs/outputs, and UI demos.
 <br /> **If the demo video says: No video with supported format and mime type found**
-<br /> **Please clear your browser cache or refresh the page**
+<br /> **Please clear your browser cache or refresh the page or try a different browser such as Chrome or Firefox**
 
 ### 🚀 Pipelines
 
