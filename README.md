@@ -1,4 +1,4 @@
-# 🎓 Bowtie Thesis: ACE - Leveraging Large Language Models for Bowtie Diagram Generation in Failure Analysis and System Dynamics
+# 🎓 Bowtie Thesis: ACE - Leveraging LLMs for Bowtie Diagram Generation in Failure Analysis and System Dynamics
 
 This project explores the use of large language models (LLMs) to automate the extraction of Bowtie diagrams and Causal Loop Diagrams (CLDs) from FMEA-style technical documents. It combines OCR, RAG, Vision LLMs, and Knowledge Graphs in a modular Dash interface.
 
