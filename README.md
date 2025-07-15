@@ -32,7 +32,7 @@ Each folder includes its own `README.md` explaining scripts, inputs/outputs, and
 
 ---
 
-### 🧰 Utilities
+### 🧰 Additional Files
 
 - `model_selection.py`  
   CLD extraction and hallucination testing from narrative text using DeepSeek/Mistral.
